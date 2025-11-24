@@ -1,4 +1,4 @@
-# HTTP KV Server — Phase 1 (C++)
+# HTTP KV Server 
 
 Minimal **Phase-1** HTTP key–value server in **C++17** with:
 - A very small HTTP server (custom, blocking sockets + thread pool)
@@ -112,6 +112,19 @@ curl -s -X DELETE localhost:8080/kv/alpha -i
 ```
 
 ---
+
+
+## Load Generator
+- Put_all : write(POST) new key value to DB.
+- Get_popular : retrieves one hot-key from the cache.
+- Get_all : read-miss workload in your load generator.
+- Mix : It mixes hot GETs, cold GETs, and POST writes according to fixed probabilities.
+
+  Usage:
+  -Compilation:
+      g++ loadgen.cpp -o loadgen -pthread 
+  -Run :
+      taskset -c <cores-values> ./loadgen <IP-address> <port-no> <no-of-clients> <time-duration> <workload>
 
 ## Notes / Limits
 
